@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [thing, setThing] = useState({});
+  const [thing, setThing] = useState({ key1: "nothing for now" });
   const fetchThing = () => {
     console.log("fetching...");
     fetch(
