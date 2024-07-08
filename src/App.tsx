@@ -5,8 +5,9 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [thing, setThing] = useState("");
+  const [thing, setThing] = useState({});
   const fetchThing = () => {
+    console.log("fetching...");
     fetch(
       "https://qrqmz2axalbq3umkbyhtbymllq0aorpp.lambda-url.us-east-1.on.aws/",
       {
@@ -18,13 +19,17 @@ function App() {
         }),
       }
     )
-      .then((res) => res.json)
-      .then((res) => setThing(res));
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setThing(res);
+      });
   };
 
   useEffect(() => {
     fetchThing();
   }, []);
+
   return (
     <>
       <div>
@@ -47,7 +52,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      {thing ? <div>thing is: {thing}</div> : <div>nothing</div>}
+      {thing ? <div>thing is: {thing.key1}</div> : <div>nothing</div>}
     </>
   );
 }
